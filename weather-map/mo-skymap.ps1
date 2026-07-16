@@ -1,6 +1,7 @@
 # SkyMap local server — mở http://localhost:5500/weather-map/
 $port = 5500
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
+# Thư mục gốc repo (cha của weather-map)
+$root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:$port/")
@@ -10,6 +11,7 @@ Write-Host ""
 Write-Host "  SkyMap dang chay!" -ForegroundColor Cyan
 Write-Host "  Mo link nay tren trinh duyet:" -ForegroundColor Green
 Write-Host "  http://localhost:$port/weather-map/" -ForegroundColor Yellow
+Write-Host "  Trang tong hop: http://localhost:$port/" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "  Nhan Ctrl+C de dung server." -ForegroundColor DarkGray
 Write-Host ""

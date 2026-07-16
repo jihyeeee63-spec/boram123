@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checklist · 15/07/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a2a36;
+      --muted: #5b6f7e;
+      --card: rgba(255, 255, 255, 0.88);
+      --line: rgba(26, 42, 54, 0.08);
+      --shadow: 0 18px 40px rgba(40, 78, 110, 0.12);
+      --radius: 20px;
+      --font-vi: "Be Vietnam Pro", sans-serif;
+      --font-ko: "Noto Sans KR", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-vi);
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #d9f1ff 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #ffe4d4 0%, transparent 50%),
+        radial-gradient(700px 400px at 50% 100%, #ffe8f0 0%, transparent 45%),
+        linear-gradient(165deg, #eef6fb 0%, #f7f3ef 48%, #eaf4f1 100%);
+      padding: 28px 16px 48px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body[data-lang="ko"] {
+      font-family: var(--font-ko);
+    }
+
+    .garden {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.42;
+    }
+
+    .bg-shape-1 {
+      width: 280px;
+      height: 280px;
+      background: #9ad7c8;
+      top: 18%;
+      left: -80px;
+    }
+
+    .bg-shape-2 {
+      width: 320px;
+      height: 320px;
+      background: #f6c9a8;
+      bottom: 8%;
+      right: -100px;
+    }
+
+    .bg-shape-3 {
+      width: 220px;
+      height: 220px;
+      background: #f7c5d8;
+      top: 55%;
+      left: 35%;
+    }
+
+    .deco-flower {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      opacity: 0.88;
+      animation: sway 5.5s ease-in-out infinite;
+    }
+
+    .deco-flower svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 6px 10px rgba(80, 60, 40, 0.12));
+    }
+
+    .deco-flower.f1 { top: 8%; left: 4%; animation-delay: 0s; }
+    .deco-flower.f2 { top: 22%; right: 5%; width: 46px; height: 46px; animation-delay: 0.8s; }
+    .deco-flower.f3 { bottom: 18%; left: 6%; width: 42px; height: 42px; animation-delay: 1.4s; }
+    .deco-flower.f4 { bottom: 10%; right: 8%; width: 50px; height: 50px; animation-delay: 0.4s; }
+    .deco-flower.f5 { top: 48%; right: 3%; width: 38px; height: 38px; animation-delay: 1.8s; }
+
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 16px;
+      border-radius: 80% 0 80% 0;
+      opacity: 0.55;
+      animation: fall linear infinite;
+    }
+
+    .petal.p1 { left: 12%; top: -20px; background: #ff8fab; animation-duration: 11s; }
+    .petal.p2 { left: 28%; top: -40px; background: #ffb4a2; width: 10px; height: 14px; animation-duration: 14s; animation-delay: 2s; }
+    .petal.p3 { left: 55%; top: -30px; background: #ffc2d1; animation-duration: 12s; animation-delay: 4s; }
+    .petal.p4 { left: 72%; top: -50px; background: #f9a8d4; width: 11px; height: 15px; animation-duration: 15s; animation-delay: 1s; }
+    .petal.p5 { left: 88%; top: -25px; background: #fec89a; animation-duration: 13s; animation-delay: 3s; }
+    .petal.p6 { left: 40%; top: -35px; background: #bde0fe; width: 9px; height: 13px; animation-duration: 16s; animation-delay: 5s; }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      width: min(640px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 22px;
+    }
+
+    .header {
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: var(--shadow);
+      padding: 18px 22px 20px;
+      animation: rise 0.55s ease both;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #ff8fab, #fec89a, #a8dadc, #b8e0d2);
+    }
+
+    .hero-art {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0 10px;
+    }
+
+    .hero-art svg {
+      width: min(100%, 280px);
+      height: auto;
+      animation: floaty 4s ease-in-out infinite;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #2f7d6d;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      background: #e8f0f6;
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      min-width: 42px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--ink);
+    }
+
+    .lang-btn[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 4px 12px rgba(40, 78, 110, 0.12);
+    }
+
+    .header h1 {
+      font-size: clamp(1.55rem, 4vw, 2rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .progress-block {
+      margin-top: 18px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .progress-meta strong {
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .progress-track {
+      height: 10px;
+      border-radius: 999px;
+      background: #dfe9f1;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #2f9e8a, #f0a35e, #ff8fab);
+      transition: width 0.35s ease;
+    }
+
+    .groups {
+      display: grid;
+      gap: 16px;
+    }
+
+    .group {
+      animation: rise 0.55s ease both;
+    }
+
+    .group:nth-child(1) { animation-delay: 0.05s; }
+    .group:nth-child(2) { animation-delay: 0.1s; }
+    .group:nth-child(3) { animation-delay: 0.15s; }
+
+    .group-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 0 4px 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .group-title .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .task-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      --accent: #2f9e8a;
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 12px;
+      align-items: center;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 12px 14px 12px 12px;
+      box-shadow: 0 10px 24px rgba(40, 78, 110, 0.07);
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+    }
+
+    .task:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(40, 78, 110, 0.12);
+    }
+
+    .task:focus-within {
+      outline: 2px solid color-mix(in srgb, var(--accent) 55%, white);
+      outline-offset: 2px;
+    }
+
+    .task.done {
+      background: color-mix(in srgb, var(--accent) 10%, white);
+      opacity: 0.9;
+    }
+
+    .task.done .task-title {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      color: color-mix(in srgb, var(--ink) 55%, var(--muted));
+    }
+
+    .task.done .task-icon {
+      filter: grayscale(0.25);
+      transform: scale(0.96);
+    }
+
+    .task-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent) 14%, white);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .task-icon svg {
+      width: 30px;
+      height: 30px;
+      display: block;
+    }
+
+    .task-check {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .task-check input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .checkmark {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 2px solid color-mix(in srgb, var(--accent) 70%, #fff);
+      background: #fff;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .checkmark::after {
+      content: "";
+      width: 6px;
+      height: 11px;
+      border: solid #fff;
+      border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.15s ease;
+      margin-top: -2px;
+    }
+
+    .task-check input:checked + .checkmark {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .task-check input:checked + .checkmark::after {
+      transform: rotate(45deg) scale(1);
+    }
+
+    .task-body {
+      min-width: 0;
+    }
+
+    .task-title {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 14%, white);
+      color: color-mix(in srgb, var(--accent) 70%, #1a2a36);
+      font-weight: 600;
+    }
+
+    .badge-time {
+      background: #fff;
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, #fff);
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-duration {
+      opacity: 0.92;
+    }
+
+    .footer {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      padding: 4px 8px 0;
+      animation: rise 0.55s ease both;
+      animation-delay: 0.2s;
+    }
+
+    .footer-bunny {
+      width: 72px;
+      height: auto;
+      margin-bottom: 2px;
+      animation: floaty 3.8s ease-in-out infinite;
+    }
+
+    .reset-btn {
+      border: 1px solid rgba(26, 42, 54, 0.12);
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .reset-btn:hover {
+      color: var(--ink);
+      border-color: rgba(26, 42, 54, 0.22);
+      background: #fff;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-6deg) translateY(0); }
+      50% { transform: rotate(6deg) translateY(-6px); }
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.55; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px 12px 36px;
+      }
+
+      .header {
+        padding: 16px 16px 16px;
+      }
+
+      .task {
+        grid-template-columns: auto auto 1fr;
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .task-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+      }
+
+      .task-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .deco-flower.f5,
+      .deco-flower.f3 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="garden" aria-hidden="true">
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+
+    <div class="deco-flower f1">
+      <svg viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="8" fill="#FFD166"/>
+        <ellipse cx="32" cy="14" rx="9" ry="12" fill="#FF8FAB"/>
+        <ellipse cx="32" cy="50" rx="9" ry="12" fill="#FF8FAB"/>
+        <ellipse cx="14" cy="32" rx="12" ry="9" fill="#FFB4C6"/>
+        <ellipse cx="50" cy="32" rx="12" ry="9" fill="#FFB4C6"/>
+        <ellipse cx="18" cy="18" rx="9" ry="11" fill="#FFC2D1" transform="rotate(-45 18 18)"/>
+        <ellipse cx="46" cy="18" rx="9" ry="11" fill="#FFC2D1" transform="rotate(45 46 18)"/>
+        <ellipse cx="18" cy="46" rx="9" ry="11" fill="#FFC2D1" transform="rotate(45 18 46)"/>
+        <ellipse cx="46" cy="46" rx="9" ry="11" fill="#FFC2D1" transform="rotate(-45 46 46)"/>
+      </svg>
+    </div>
+    <div class="deco-flower f2">
+      <svg viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="7" fill="#FFE08A"/>
+        <ellipse cx="32" cy="16" rx="8" ry="11" fill="#7EC8A3"/>
+        <ellipse cx="32" cy="48" rx="8" ry="11" fill="#7EC8A3"/>
+        <ellipse cx="16" cy="32" rx="11" ry="8" fill="#A8DADC"/>
+        <ellipse cx="48" cy="32" rx="11" ry="8" fill="#A8DADC"/>
+        <path d="M32 39v18" stroke="#5A8F6B" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="deco-flower f3">
+      <svg viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="30" r="7" fill="#FFF3B0"/>
+        <ellipse cx="32" cy="14" rx="8" ry="10" fill="#F4A261"/>
+        <ellipse cx="45" cy="24" rx="8" ry="10" fill="#E76F51" transform="rotate(60 45 24)"/>
+        <ellipse cx="40" cy="40" rx="8" ry="10" fill="#F4A261" transform="rotate(120 40 40)"/>
+        <ellipse cx="24" cy="40" rx="8" ry="10" fill="#E76F51" transform="rotate(180 24 40)"/>
+        <ellipse cx="19" cy="24" rx="8" ry="10" fill="#F4A261" transform="rotate(240 19 24)"/>
+        <path d="M32 37c0 8 4 14 0 20" stroke="#6A994E" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="deco-flower f4">
+      <svg viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="8" fill="#FFEDC2"/>
+        <ellipse cx="32" cy="15" rx="9" ry="12" fill="#CDB4DB"/>
+        <ellipse cx="32" cy="49" rx="9" ry="12" fill="#CDB4DB"/>
+        <ellipse cx="15" cy="32" rx="12" ry="9" fill="#E2CFF0"/>
+        <ellipse cx="49" cy="32" rx="12" ry="9" fill="#E2CFF0"/>
+      </svg>
+    </div>
+    <div class="deco-flower f5">
+      <svg viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="6" fill="#FFE66D"/>
+        <ellipse cx="32" cy="18" rx="7" ry="10" fill="#90DBF4"/>
+        <ellipse cx="32" cy="46" rx="7" ry="10" fill="#90DBF4"/>
+        <ellipse cx="18" cy="32" rx="10" ry="7" fill="#BDE0FE"/>
+        <ellipse cx="46" cy="32" rx="10" ry="7" fill="#BDE0FE"/>
+      </svg>
+    </div>
+
+    <span class="petal p1"></span>
+    <span class="petal p2"></span>
+    <span class="petal p3"></span>
+    <span class="petal p4"></span>
+    <span class="petal p5"></span>
+    <span class="petal p6"></span>
+  </div>
+
+  <main class="app">
+    <header class="header">
+      <div class="header-top">
+        <p class="eyebrow" data-i18n="eyebrow"></p>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn" data-lang="vi" aria-pressed="true">VI</button>
+          <button type="button" class="lang-btn" data-lang="ko" aria-pressed="false">한</button>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 280 110" fill="none">
+          <ellipse cx="140" cy="92" rx="70" ry="10" fill="#D8EFE7" opacity="0.8"/>
+          <path d="M70 90c8-28 18-48 28-55" stroke="#6A994E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M140 95c0-40 2-62 0-75" stroke="#6A994E" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M210 90c-8-28-18-48-28-55" stroke="#6A994E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M78 60c-12 2-18 12-14 18" stroke="#82C091" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M202 60c12 2 18 12 14 18" stroke="#82C091" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <g transform="translate(78 28)">
+            <circle cx="20" cy="20" r="6" fill="#FFD166"/>
+            <ellipse cx="20" cy="6" rx="7" ry="9" fill="#FF8FAB"/>
+            <ellipse cx="20" cy="34" rx="7" ry="9" fill="#FF8FAB"/>
+            <ellipse cx="6" cy="20" rx="9" ry="7" fill="#FFB4C6"/>
+            <ellipse cx="34" cy="20" rx="9" ry="7" fill="#FFB4C6"/>
+          </g>
+          <g transform="translate(120 8)">
+            <circle cx="20" cy="20" r="7" fill="#FFE08A"/>
+            <ellipse cx="20" cy="5" rx="8" ry="10" fill="#F4A261"/>
+            <ellipse cx="20" cy="35" rx="8" ry="10" fill="#F4A261"/>
+            <ellipse cx="5" cy="20" rx="10" ry="8" fill="#E76F51"/>
+            <ellipse cx="35" cy="20" rx="10" ry="8" fill="#E76F51"/>
+          </g>
+          <g transform="translate(162 28)">
+            <circle cx="20" cy="20" r="6" fill="#FFF3B0"/>
+            <ellipse cx="20" cy="6" rx="7" ry="9" fill="#CDB4DB"/>
+            <ellipse cx="20" cy="34" rx="7" ry="9" fill="#CDB4DB"/>
+            <ellipse cx="6" cy="20" rx="9" ry="7" fill="#E2CFF0"/>
+            <ellipse cx="34" cy="20" rx="9" ry="7" fill="#E2CFF0"/>
+          </g>
+          <circle cx="52" cy="78" r="4" fill="#FFB4C6"/>
+          <circle cx="228" cy="78" r="4" fill="#A8DADC"/>
+          <circle cx="98" cy="84" r="3" fill="#FFD166"/>
+          <circle cx="182" cy="84" r="3" fill="#90DBF4"/>
+        </svg>
+      </div>
+
+      <h1 data-i18n="title"></h1>
+      <p class="subtitle" data-i18n="subtitle"></p>
+
+      <div class="progress-block">
+        <div class="progress-meta">
+          <span data-i18n="progressLabel"></span>
+          <strong id="progressText">0/9</strong>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="groups" id="taskGroups" aria-live="polite"></section>
+
+    <footer class="footer">
+      <svg class="footer-bunny" viewBox="0 0 80 70" fill="none" aria-hidden="true">
+        <ellipse cx="28" cy="18" rx="8" ry="16" fill="#F8E9DD" stroke="#E8C9B0" stroke-width="1.5"/>
+        <ellipse cx="52" cy="18" rx="8" ry="16" fill="#F8E9DD" stroke="#E8C9B0" stroke-width="1.5"/>
+        <ellipse cx="28" cy="18" rx="3.5" ry="10" fill="#FFC2D1"/>
+        <ellipse cx="52" cy="18" rx="3.5" ry="10" fill="#FFC2D1"/>
+        <circle cx="40" cy="42" r="18" fill="#FFF4EC" stroke="#E8C9B0" stroke-width="1.5"/>
+        <circle cx="33" cy="40" r="2.2" fill="#5B6F7E"/>
+        <circle cx="47" cy="40" r="2.2" fill="#5B6F7E"/>
+        <ellipse cx="40" cy="46" rx="3" ry="2.2" fill="#FF8FAB"/>
+        <path d="M34 50c2.5 2 9.5 2 12 0" stroke="#E07A5F" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="26" cy="45" r="3" fill="#FFD6E0" opacity="0.8"/>
+        <circle cx="54" cy="45" r="3" fill="#FFD6E0" opacity="0.8"/>
+      </svg>
+      <button type="button" class="reset-btn" id="resetBtn" data-i18n="reset"></button>
+      <p class="hint" data-i18n="hint"></p>
+    </footer>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "daily-checklist-2026-07-15";
+    const LANG_KEY = "daily-checklist-lang";
+
+    const icons = {
+      breakfast: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="12" fill="#FFD166"/><path d="M24 8v4M24 36v4M8 24h4M36 24h4M12.5 12.5l2.8 2.8M32.7 32.7l2.8 2.8M12.5 35.5l2.8-2.8M32.7 15.3l2.8-2.8" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="5" fill="#FFF3B0"/></svg>`,
+      clean: `<svg viewBox="0 0 48 48" fill="none"><path d="M14 34c4-10 8-16 10-18 2 2 6 8 10 18" stroke="#7EC8A3" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="14" r="5" fill="#A8DADC"/><path d="M18 38h12" stroke="#5A8F6B" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="22" r="2" fill="#BDE0FE"/><circle cx="32" cy="24" r="2" fill="#BDE0FE"/></svg>`,
+      laundry: `<svg viewBox="0 0 48 48" fill="none"><rect x="10" y="8" width="28" height="32" rx="6" fill="#BDE0FE" stroke="#4A90C6" stroke-width="2"/><circle cx="24" cy="26" r="9" fill="#EFF8FF" stroke="#4A90C6" stroke-width="2"/><path d="M18 26c2-4 10-4 12 0" stroke="#7EC8E3" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="14" r="2" fill="#4A90C6"/><circle cx="22" cy="14" r="2" fill="#90DBF4"/></svg>`,
+      "ai-class": `<svg viewBox="0 0 48 48" fill="none"><rect x="9" y="12" width="30" height="22" rx="4" fill="#D8F3DC" stroke="#2F7D6D" stroke-width="2"/><path d="M16 38h16" stroke="#2F7D6D" stroke-width="2.5" stroke-linecap="round"/><circle cx="19" cy="23" r="2.5" fill="#2F7D6D"/><circle cx="29" cy="23" r="2.5" fill="#2F7D6D"/><path d="M20 29c2 2 6 2 8 0" stroke="#2F7D6D" stroke-width="2" stroke-linecap="round"/><path d="M24 8v4" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+      market: `<svg viewBox="0 0 48 48" fill="none"><path d="M12 18h24l-2 18H14L12 18z" fill="#FFE8A3" stroke="#D4A017" stroke-width="2"/><path d="M16 18c0-6 3.5-10 8-10s8 4 8 10" stroke="#D4A017" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="28" r="2.5" fill="#E07A5F"/><circle cx="28" cy="30" r="3" fill="#7EC8A3"/><circle cx="24" cy="24" r="2" fill="#FF8FAB"/></svg>`,
+      dinner: `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="30" rx="14" ry="6" fill="#F8E1E5" stroke="#C46B7A" stroke-width="2"/><path d="M12 28c2-10 8-16 12-16s10 6 12 16" fill="#FFD6E0" stroke="#C46B7A" stroke-width="2"/><circle cx="24" cy="22" r="4" fill="#FF8FAB"/><path d="M20 14c1-4 7-4 8 0" stroke="#E07A5F" stroke-width="2" stroke-linecap="round"/></svg>`,
+      bath: `<svg viewBox="0 0 48 48" fill="none"><path d="M10 26h28v6c0 5-5 10-14 10s-14-5-14-10v-6z" fill="#CFF1F5" stroke="#3AA6B8" stroke-width="2"/><path d="M12 26c2-4 6-8 12-8s10 4 12 8" stroke="#3AA6B8" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="22" r="2.5" fill="#90DBF4"/><circle cx="26" cy="20" r="3" fill="#BDE0FE"/><circle cx="32" cy="23" r="2" fill="#A8DADC"/><path d="M34 12c0 4-4 6-4 6s-4-2-4-6a4 4 0 118 0z" fill="#7EC8E3"/></svg>`,
+      story: `<svg viewBox="0 0 48 48" fill="none"><path d="M10 12h12c2 0 4 2 4 4v20c-2-1.5-4-2-6-2H10V12z" fill="#F3E2C8" stroke="#B07D4F" stroke-width="2"/><path d="M38 12H26c-2 0-4 2-4 4v20c2-1.5 4-2 6-2h10V12z" fill="#FFE8D6" stroke="#B07D4F" stroke-width="2"/><path d="M14 18h6M14 23h5M28 18h6M28 23h5" stroke="#D4A373" stroke-width="1.8" stroke-linecap="round"/><circle cx="33" cy="30" r="3" fill="#FF8FAB"/></svg>`,
+      sleep: `<svg viewBox="0 0 48 48" fill="none"><path d="M30 18a10 10 0 11-12.5 12.2A12 12 0 1030 18z" fill="#D6E4F0" stroke="#4B6A88" stroke-width="2"/><circle cx="34" cy="12" r="2" fill="#FFD166"/><circle cx="40" cy="18" r="1.5" fill="#FFD166"/><circle cx="36" cy="22" r="1.2" fill="#FFD166"/><path d="M12 34c4 2 10 2 14 0" stroke="#4B6A88" stroke-width="2" stroke-linecap="round"/></svg>`,
+    };
+
+    const i18n = {
+      vi: {
+        eyebrow: "Thứ Tư · 15/07/2026",
+        title: "Danh sách công việc hôm nay",
+        subtitle: "Tích vào từng việc khi hoàn thành. Tiến độ được lưu trên máy của bạn.",
+        progressLabel: "Tiến độ",
+        reset: "Xóa hết dấu tích",
+        hint: "Nhấn VI / 한 để đổi ngôn ngữ",
+        groups: {
+          morning: "Buổi sáng · 06:30–07:50",
+          afternoon: "Buổi chiều · 14:00–16:25",
+          evening: "Buổi tối · 17:30–19:45",
+        },
+        minutes: (n) => `${n} phút`,
+        confirmReset: "Bạn muốn xóa tất cả dấu tích?",
+      },
+      ko: {
+        eyebrow: "수요일 · 2026.07.15",
+        title: "오늘의 할 일 목록",
+        subtitle: "완료한 항목을 체크하세요. 진행 상황은 이 기기에 저장됩니다.",
+        progressLabel: "진행률",
+        reset: "체크 모두 지우기",
+        hint: "VI / 한 버튼으로 언어를 바꿀 수 있어요",
+        groups: {
+          morning: "아침 · 06:30–07:50",
+          afternoon: "오후 · 14:00–16:25",
+          evening: "저녁 · 17:30–19:45",
+        },
+        minutes: (n) => `${n}분`,
+        confirmReset: "모든 체크를 지우시겠어요?",
+      },
+    };
+
+    const tasks = [
+      {
+        id: "breakfast",
+        group: "morning",
+        color: "#e07a5f",
+        slot: "06:30 – 07:00",
+        duration: 30,
+        period: { vi: "Sáng", ko: "아침" },
+        title: {
+          vi: "Nấu ăn và cho con ăn sáng",
+          ko: "아침 요리하고 아이에게 아침 먹이기",
+        },
+      },
+      {
+        id: "clean",
+        group: "morning",
+        color: "#3d9b84",
+        slot: "07:05 – 07:25",
+        duration: 20,
+        period: { vi: "Sáng", ko: "아침" },
+        title: {
+          vi: "Vệ sinh phòng",
+          ko: "방 청소하기",
+        },
+      },
+      {
+        id: "laundry",
+        group: "morning",
+        color: "#4a90c6",
+        slot: "07:30 – 07:50",
+        duration: 20,
+        period: { vi: "Sáng", ko: "아침" },
+        title: {
+          vi: "Giặt quần áo",
+          ko: "빨래하기",
+        },
+      },
+      {
+        id: "ai-class",
+        group: "afternoon",
+        color: "#2f7d6d",
+        slot: "14:00 – 14:30",
+        duration: 30,
+        period: { vi: "Chiều", ko: "오후" },
+        title: {
+          vi: "Đi học lớp lập trình AI",
+          ko: "AI 프로그래밍 수업 듣기",
+        },
+      },
+      {
+        id: "market",
+        group: "afternoon",
+        color: "#d4a017",
+        slot: "16:00 – 16:25",
+        duration: 25,
+        period: { vi: "Chiều", ko: "오후" },
+        title: {
+          vi: "Đi chợ",
+          ko: "장보기",
+        },
+      },
+      {
+        id: "dinner",
+        group: "evening",
+        color: "#c46b7a",
+        slot: "17:30 – 18:00",
+        duration: 30,
+        period: { vi: "Tối", ko: "저녁" },
+        title: {
+          vi: "Nấu ăn tối và cho con ăn",
+          ko: "저녁 요리하고 아이에게 저녁 먹이기",
+        },
+      },
+      {
+        id: "bath",
+        group: "evening",
+        color: "#3aa6b8",
+        slot: "18:40 – 19:00",
+        duration: 20,
+        period: { vi: "Tối", ko: "저녁" },
+        title: {
+          vi: "Tắm cho con",
+          ko: "아이 목욕시키기",
+        },
+      },
+      {
+        id: "story",
+        group: "evening",
+        color: "#b07d4f",
+        slot: "19:10 – 19:30",
+        duration: 20,
+        period: { vi: "Tối", ko: "저녁" },
+        title: {
+          vi: "Đọc sách và kể chuyện cho con nghe",
+          ko: "책 읽어주고 아이에게 이야기해주기",
+        },
+      },
+      {
+        id: "sleep",
+        group: "evening",
+        color: "#4b6a88",
+        slot: "19:30 – 19:45",
+        duration: 15,
+        period: { vi: "Tối", ko: "저녁" },
+        title: {
+          vi: "Cho con ngủ",
+          ko: "아이 재우기",
+        },
+      },
+    ];
+
+    const groupOrder = ["morning", "afternoon", "evening"];
+    const groupColors = {
+      morning: "#e07a5f",
+      afternoon: "#2f7d6d",
+      evening: "#4b6a88",
+    };
+
+    let lang = localStorage.getItem(LANG_KEY) || "vi";
+    let checked = loadChecked();
+
+    function loadChecked() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveChecked() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
+    }
+
+    function t(key) {
+      return i18n[lang][key];
+    }
+
+    function applyStaticText() {
+      document.documentElement.lang = lang === "ko" ? "ko" : "vi";
+      document.body.dataset.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        const value = t(key);
+        if (typeof value === "string") el.textContent = value;
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+      });
+    }
+
+    function renderTasks() {
+      const container = document.getElementById("taskGroups");
+      container.innerHTML = "";
+
+      groupOrder.forEach((groupId) => {
+        const groupTasks = tasks.filter((task) => task.group === groupId);
+        if (!groupTasks.length) return;
+
+        const section = document.createElement("section");
+        section.className = "group";
+
+        const heading = document.createElement("h2");
+        heading.className = "group-title";
+        heading.innerHTML = `<span class="dot" style="background:${groupColors[groupId]}"></span>${i18n[lang].groups[groupId]}`;
+
+        const list = document.createElement("ul");
+        list.className = "task-list";
+
+        groupTasks.forEach((task) => {
+          const done = Boolean(checked[task.id]);
+          const li = document.createElement("li");
+          li.className = `task${done ? " done" : ""}`;
+          li.style.setProperty("--accent", task.color);
+
+          li.innerHTML = `
+            <label class="task-check">
+              <input type="checkbox" data-id="${task.id}" ${done ? "checked" : ""} />
+              <span class="checkmark" aria-hidden="true"></span>
+            </label>
+            <div class="task-icon" aria-hidden="true">${icons[task.id] || ""}</div>
+            <div class="task-body">
+              <p class="task-title">${task.title[lang]}</p>
+              <div class="task-meta">
+                <span class="badge badge-time">${task.slot}</span>
+                <span class="badge badge-duration">${i18n[lang].minutes(task.duration)}</span>
+                <span class="badge">${task.period[lang]}</span>
+              </div>
+            </div>
+          `;
+
+          const checkbox = li.querySelector('input[type="checkbox"]');
+          checkbox.addEventListener("change", () => {
+            checked[task.id] = checkbox.checked;
+            li.classList.toggle("done", checkbox.checked);
+            saveChecked();
+            updateProgress();
+          });
+
+          list.appendChild(li);
+        });
+
+        section.appendChild(heading);
+        section.appendChild(list);
+        container.appendChild(section);
+      });
+    }
+
+    function updateProgress() {
+      const total = tasks.length;
+      const done = tasks.filter((task) => checked[task.id]).length;
+      const percent = total ? Math.round((done / total) * 100) : 0;
+
+      document.getElementById("progressText").textContent = `${done}/${total}`;
+      document.getElementById("progressFill").style.width = `${percent}%`;
+
+      const track = document.querySelector(".progress-track");
+      track.setAttribute("aria-valuenow", String(done));
+      track.setAttribute("aria-valuetext", `${done} / ${total}`);
+    }
+
+    function setLang(next) {
+      lang = next;
+      localStorage.setItem(LANG_KEY, lang);
+      applyStaticText();
+      renderTasks();
+      updateProgress();
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm(i18n[lang].confirmReset)) return;
+      checked = {};
+      saveChecked();
+      renderTasks();
+      updateProgress();
+    });
+
+    applyStaticText();
+    renderTasks();
+    updateProgress();
+  </script>
+</body>
+</html>
