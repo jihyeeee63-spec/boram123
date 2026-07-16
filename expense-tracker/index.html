@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhật ký chi tiêu · Daily Budget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1 data-i18n="appTitle">Nhật ký chi tiêu</h1>
+        <p class="subtitle" data-i18n="appSubtitle">Theo dõi thu · chi trong ngày</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <label class="date-pill">
+        <span data-i18n="dateLabel">Ngày</span>
+        <input type="date" id="dateInput" />
+      </label>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="vi">VI</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="summary-row">
+      <article class="stat-card income">
+        <p class="stat-label" data-i18n="totalIncome">Tổng thu</p>
+        <p class="stat-value" id="totalIncome">0 ₫</p>
+      </article>
+      <article class="stat-card expense">
+        <p class="stat-label" data-i18n="totalExpense">Tổng chi</p>
+        <p class="stat-value" id="totalExpense">0 ₫</p>
+      </article>
+      <article class="stat-card balance">
+        <p class="stat-label" data-i18n="balance">Còn lại</p>
+        <p class="stat-value" id="balance">0 ₫</p>
+      </article>
+    </section>
+
+    <section class="panel chart-panel">
+      <div class="panel-head">
+        <h2 data-i18n="chartTitle">Biểu đồ chi tiêu</h2>
+        <p class="hint" data-i18n="chartHint">Tỷ lệ từng hạng mục trong ngày</p>
+      </div>
+      <div class="chart-wrap">
+        <div class="donut-box">
+          <canvas id="donutChart" width="260" height="260" aria-label="Expense chart"></canvas>
+          <div class="donut-center">
+            <span class="donut-label" data-i18n="expenseShare">Chi tiêu</span>
+            <strong id="donutTotal">0 ₫</strong>
+          </div>
+        </div>
+        <ul class="legend" id="legend"></ul>
+      </div>
+    </section>
+
+    <section class="panel form-panel">
+      <div class="panel-head">
+        <h2 data-i18n="addTitle">Thêm giao dịch</h2>
+        <p class="hint" data-i18n="addHint">Ghi lại thu nhập hoặc chi phí sinh hoạt</p>
+      </div>
+      <form id="txForm" class="tx-form">
+        <div class="type-toggle" role="group">
+          <button type="button" class="type-btn active" data-type="expense" data-i18n="typeExpense">Chi tiêu</button>
+          <button type="button" class="type-btn" data-type="income" data-i18n="typeIncome">Thu nhập</button>
+        </div>
+
+        <label>
+          <span data-i18n="categoryLabel">Hạng mục</span>
+          <select id="category" required></select>
+        </label>
+
+        <label>
+          <span data-i18n="noteLabel">Nội dung</span>
+          <input type="text" id="note" data-i18n-placeholder="notePlaceholder" placeholder="Ví dụ: cơm trưa, taxi..." required maxlength="80" />
+        </label>
+
+        <label>
+          <span data-i18n="amountLabel">Số tiền</span>
+          <input type="number" id="amount" min="1" step="1000" required placeholder="50000" />
+        </label>
+
+        <button type="submit" class="submit-btn" data-i18n="addBtn">Thêm vào nhật ký</button>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="panel-head row">
+        <div>
+          <h2 data-i18n="listTitle">Chi tiết trong ngày</h2>
+          <p class="hint" data-i18n="listHint">Xem đã chi tiêu vào việc gì</p>
+        </div>
+        <button type="button" class="ghost-btn" id="clearDay" data-i18n="clearDay">Xóa ngày này</button>
+      </div>
+      <ul class="tx-list" id="txList"></ul>
+      <p class="empty" id="emptyState" data-i18n="emptyState">Chưa có giao dịch nào hôm nay. Hãy thêm một khoản nhé!</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footerNote">Dữ liệu lưu trên máy bạn · Soft & cute daily budget</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
