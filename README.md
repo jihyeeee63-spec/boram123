@@ -24,11 +24,23 @@ boram123/
 | `expense-tracker/` | Nhật ký chi tiêu | Thu · chi theo ngày, biểu đồ màu + % , VI · EN |
 | `topik-quiz/` | TOPIK II 모의고사 | 어휘·문법·읽기·듣기, timer, chấm điểm, giải thích KO/VI/EN/ZH/JA |
 
+## Link web (GitHub Pages)
+
+| Trang | URL |
+|-------|-----|
+| Tổng hợp | https://jihyeeee63-spec.github.io/boram123/ |
+| TOPIK quiz | https://jihyeeee63-spec.github.io/boram123/topik-quiz/ |
+| Checklist | https://jihyeeee63-spec.github.io/boram123/daily-checklist/ |
+| SkyMap | https://jihyeeee63-spec.github.io/boram123/weather-map/ |
+| Chi tiêu | https://jihyeeee63-spec.github.io/boram123/expense-tracker/ |
+
+Shortcut Windows: `Hub.url`, `TOPIK.url`, `Mo Hub.bat`, `Mo TOPIK.bat`
+
 ## Cách mở
 
 ### Trang tổng hợp
-- Double-click `index.html` hoặc `Mo Hub.bat`
-- Link local: `file:///C:/Users/sinhvien/Projects/daily-checklist/index.html`
+- Double-click `Hub.url` / `Mo Hub.bat` (mở link web)
+- Hoặc mở `index.html` trên máy
 
 ### Từng ứng dụng
 | App | Mở nhanh |
