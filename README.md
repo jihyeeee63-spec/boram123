@@ -24,15 +24,15 @@ boram123/
 | `expense-tracker/` | Nhật ký chi tiêu | Thu · chi theo ngày, biểu đồ màu + % , VI · EN |
 | `topik-quiz/` | TOPIK II 모의고사 | 어휘·문법·읽기·듣기, timer, chấm điểm, giải thích KO/VI/EN/ZH/JA |
 
-## Link web (GitHub Pages)
+## Link web (URL)
 
 | Trang | URL |
 |-------|-----|
-| Tổng hợp | https://jihyeeee63-spec.github.io/boram123/ |
-| TOPIK quiz | https://jihyeeee63-spec.github.io/boram123/topik-quiz/ |
-| Checklist | https://jihyeeee63-spec.github.io/boram123/daily-checklist/ |
-| SkyMap | https://jihyeeee63-spec.github.io/boram123/weather-map/ |
-| Chi tiêu | https://jihyeeee63-spec.github.io/boram123/expense-tracker/ |
+| Tổng hợp | https://cdn.jsdelivr.net/gh/jihyeeee63-spec/boram123@main/index.html |
+| TOPIK quiz | https://cdn.jsdelivr.net/gh/jihyeeee63-spec/boram123@main/topik-quiz/index.html |
+| Checklist | https://cdn.jsdelivr.net/gh/jihyeeee63-spec/boram123@main/daily-checklist/index.html |
+| SkyMap | https://cdn.jsdelivr.net/gh/jihyeeee63-spec/boram123@main/weather-map/index.html |
+| Chi tiêu | https://cdn.jsdelivr.net/gh/jihyeeee63-spec/boram123@main/expense-tracker/index.html |
 
 Shortcut Windows: `Hub.url`, `TOPIK.url`, `Mo Hub.bat`, `Mo TOPIK.bat`
 
