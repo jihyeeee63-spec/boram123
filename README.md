@@ -7,10 +7,12 @@ Tổng hợp các chương trình nhỏ trong repo [`boram123`](https://github.c
 ```
 boram123/
 ├── index.html              ← Trang tổng hợp (hub)
-├── Mo Hub.bat              ← Mở hub nhanh trên Windows
+├── Mo Hub.bat / Hub.url
+├── README.md
 ├── daily-checklist/        ← Checklist hàng ngày
 ├── weather-map/            ← SkyMap thời tiết
-└── expense-tracker/        ← Nhật ký thu · chi
+├── expense-tracker/        ← Nhật ký thu · chi
+└── topik-quiz/             ← Luyện thi TOPIK II (3·4급)
 ```
 
 ## Các ứng dụng
@@ -20,6 +22,7 @@ boram123/
 | `daily-checklist/` | Checklist hàng ngày | Việc cần làm trong ngày, hỗ trợ Việt · Hàn |
 | `weather-map/` | SkyMap | Bản đồ dự báo thời tiết |
 | `expense-tracker/` | Nhật ký chi tiêu | Thu · chi theo ngày, biểu đồ màu + % , VI · EN |
+| `topik-quiz/` | TOPIK II 모의고사 | 어휘·문법·읽기·듣기, timer, chấm điểm, giải thích KO/VI/EN/ZH/JA |
 
 ## Cách mở
 
@@ -30,9 +33,10 @@ boram123/
 ### Từng ứng dụng
 | App | Mở nhanh |
 |-----|----------|
-| Checklist | `daily-checklist/Mo Checklist.bat` hoặc `Checklist.url` |
+| Checklist | `daily-checklist/Mo Checklist.bat` |
 | SkyMap | `weather-map/Mo SkyMap.bat` (chạy server local) |
-| Chi tiêu | `expense-tracker/Mo Chi Tieu.bat` hoặc `Chi Tieu.url` |
+| Chi tiêu | `expense-tracker/Mo Chi Tieu.bat` |
+| TOPIK | `topik-quiz/Mo TOPIK.bat` hoặc `TOPIK.url` |
 
 ### SkyMap (cần server)
 ```bat

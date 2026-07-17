@@ -100,7 +100,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
 
@@ -187,6 +187,9 @@
     .app-card.checklist .cta { color: #2a9d7f; }
     .app-card.skymap .cta { color: #3f78c4; }
     .app-card.expense .cta { color: #d97845; }
+    .app-card.topik .cta { color: #3d8fd4; }
+
+    .app-card.topik::before { background: #7eb8e8; }
 
     .arrow {
       width: 28px;
@@ -233,7 +236,7 @@
       <div>
         <p class="brand-kicker" data-i18n="kicker">Boram Apps</p>
         <h1 data-i18n="title">Tổng hợp chương trình</h1>
-        <p class="lead" data-i18n="lead">Ba ứng dụng nhỏ đã tạo — checklist, thời tiết và nhật ký chi tiêu.</p>
+        <p class="lead" data-i18n="lead">Các ứng dụng nhỏ đã tạo — checklist, thời tiết, chi tiêu và luyện TOPIK.</p>
       </div>
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" class="lang-btn active" data-lang="vi">VI</button>
@@ -262,6 +265,13 @@
         <p data-i18n="descExpense">Theo dõi thu · chi trong ngày, biểu đồ màu và tỷ lệ % từng hạng mục.</p>
         <span class="cta"><span data-i18n="open">Mở ứng dụng</span><span class="arrow">→</span></span>
       </a>
+
+      <a class="app-card topik" href="topik-quiz/index.html">
+        <span class="badge" data-i18n="badgeTopik">TOPIK II</span>
+        <h2 data-i18n="nameTopik">Luyện thi TOPIK 3·4</h2>
+        <p data-i18n="descTopik">Từ vựng, ngữ pháp, đọc, nghe — đếm giờ, chấm điểm và giải thích đa ngôn ngữ.</p>
+        <span class="cta"><span data-i18n="open">Mở ứng dụng</span><span class="arrow">→</span></span>
+      </a>
     </section>
 
     <footer>
@@ -277,7 +287,7 @@
       vi: {
         kicker: "Boram Apps",
         title: "Tổng hợp chương trình",
-        lead: "Ba ứng dụng nhỏ đã tạo — checklist, thời tiết và nhật ký chi tiêu.",
+        lead: "Các ứng dụng nhỏ đã tạo — checklist, thời tiết, chi tiêu và luyện TOPIK.",
         badgeChecklist: "Checklist",
         nameChecklist: "Checklist hàng ngày",
         descChecklist: "Danh sách việc cần làm trong ngày, giao diện nhẹ nhàng, hỗ trợ Việt · Hàn.",
@@ -287,13 +297,16 @@
         badgeExpense: "Budget",
         nameExpense: "Nhật ký chi tiêu",
         descExpense: "Theo dõi thu · chi trong ngày, biểu đồ màu và tỷ lệ % từng hạng mục.",
+        badgeTopik: "TOPIK II",
+        nameTopik: "Luyện thi TOPIK 3·4",
+        descTopik: "Từ vựng, ngữ pháp, đọc, nghe — đếm giờ, chấm điểm và giải thích đa ngôn ngữ.",
         open: "Mở ứng dụng",
         footer: "Repo trên GitHub:",
       },
       en: {
         kicker: "Boram Apps",
         title: "App collection",
-        lead: "Three small apps — daily checklist, weather map, and expense diary.",
+        lead: "Small apps — daily checklist, weather map, expense diary, and TOPIK practice.",
         badgeChecklist: "Checklist",
         nameChecklist: "Daily checklist",
         descChecklist: "A calm daily to-do list with Vietnamese · Korean support.",
@@ -303,6 +316,9 @@
         badgeExpense: "Budget",
         nameExpense: "Expense diary",
         descExpense: "Track daily income and spending with a colorful percentage chart.",
+        badgeTopik: "TOPIK II",
+        nameTopik: "TOPIK 3·4 practice",
+        descTopik: "Vocab, grammar, reading, listening — timed scoring with multilingual explanations.",
         open: "Open app",
         footer: "GitHub repo:",
       },
